@@ -1,6 +1,6 @@
 /* Note: Inline CSS present in the HTML pages. Here is the main style file for this project. */
 
-.text-muted:hover {
+#wafEmail:hover {
+    text-decoration: none;
     color: ghostwhite;
 }
-
