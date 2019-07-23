@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title th:text="${appName} + ' ' + ${pageName}"> Page</title>
+    <!--    Note: The UI libs. -->
+    <div th:replace="/fragments/head :: #headLibraries"></div>
+</head>
+
+<br>
+
+<body>
+
+<div th:replace="/fragments/navbar :: nav"></div>
+
+<div class="bg-info">
+    <br><br><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Angle.</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <i>Present your perspective. ↘</i>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>History</h3>
+            <p>We have been expressing our Angle since 1996.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione voluptatem sequi nesciun.</p>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Drive</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae.</p>
+            <p><a class="btn btn-default" href="/404" role="button">View Available &ShortRightArrow;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Passion</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.</p>
+            <p>Cras fermentum odio eu feugiat pretium nibh. In ornare quam viverra orci sagittis. At auctor urna nunc
+                id. Ultricies leo integer malesuada nunc vel risus.</p>
+            <p><a class="btn btn-default" href="/404" role="button">View Available &ShortRightArrow;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Freedom</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.</p>
+            <p>Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Proin fermentum leo vel orci porta
+                non. Velit euismod in pellentesque massa placerat. Nam libero tempore, cum soluta nobis est eligendi
+                optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+            <p><a class="btn btn-default" href="404" role="button">View Available &ShortRightArrow;</a></p>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="container fa-border">
+        <div class="container" style="padding: 15px;">
+            <img src="/images/keyush.png" width="200" alt="Keyush The Stunt Dog">
+            <p>Welcome to my <span th:text="${appName}"></span>. <b>Ruf, ruf!</b></p>
+        </div>
+        <form action="#" th:action="@{/}" th:object="${entity}" method="post">
+            <div class="col-md-4">
+                <br>
+                <h4>Entity input:</h4>
+                <hr>
+                <div class="form-group">
+                    <label for="inputEntityId">Id:</label>
+                    <input type="number" class="form-control" id="inputEntityId" placeholder="7"
+                           th:field="*{entityId}">
+                    <br>
+                    <label for="inputEntityName">Name:</label>
+                    <input type="text" class="form-control" id="inputEntityName" placeholder="Keyush"
+                           th:field="*{entityName}">
+                    <br>
+                    <p>
+                        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+                        <button class="btn btn-default" type="reset" value="Clear">Clear</button>
+                    </p>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </form>
+    </div>
+    <br><br>
+    <div th:fragment="footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+<div class="bg-info">
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Contact us.</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <i>Share your visions. ↘︎</i>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+</div>
+
+</body>
+</html>
