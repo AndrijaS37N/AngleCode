@@ -7,7 +7,7 @@
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
 </head>
-
+s
 <br>
 
 <body>
@@ -53,6 +53,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae.</p>
             <p><a class="btn btn-default" href="/404" role="button">View Available &ShortRightArrow;</a></p>
+            <br>
         </div>
         <div class="col-md-4">
             <h2>Passion</h2>
@@ -60,8 +61,8 @@
                 pariatur.</p>
             <p>Cras fermentum odio eu feugiat pretium nibh. In ornare quam viverra orci sagittis. At auctor urna nunc
                 id. Ultricies leo integer malesuada nunc vel risus.</p>
-            <p><a class="btn btn-default" href="/404" role="button">View Available &ShortRightArrow;</a>
-            </p>
+            <p><a class="btn btn-default" href="/404" role="button">View Available &ShortRightArrow;</a></p>
+            <br>
         </div>
         <div class="col-md-4">
             <h2>Freedom</h2>
@@ -71,6 +72,7 @@
                 non. Velit euismod in pellentesque massa placerat. Nam libero tempore, cum soluta nobis est eligendi
                 optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
             <p><a class="btn btn-default" href="404" role="button">View Available &ShortRightArrow;</a></p>
+            <br>
         </div>
     </div>
     <br><br>
@@ -80,19 +82,19 @@
             <img src="/images/keyush.png" width="200" alt="Keyush The Stunt Dog">
             <p>Welcome to my <span th:text="${appName}"></span>. <b>Ruf, ruf!</b></p>
         </div>
-        <form action="#" th:action="@{/}" th:object="${entity}" method="post">
+        <form action="#" th:action="@{/}" th:object="${angleEntity}" method="post">
             <div class="col-md-4">
                 <br>
-                <h4>Entity input:</h4>
+                <h4>AngleEntity input:</h4>
                 <hr>
                 <div class="form-group">
-                    <label for="inputEntityId">Id:</label>
-                    <input type="number" class="form-control" id="inputEntityId" placeholder="7"
-                           th:field="*{entityId}">
+                    <label for="inputAngleEntityId">Id:</label>
+                    <input type="number" class="form-control" id="inputAngleEntityId" placeholder="7"
+                           th:field="*{angleEntityId}">
                     <br>
-                    <label for="inputEntityName">Name:</label>
-                    <input type="text" class="form-control" id="inputEntityName" placeholder="Keyush"
-                           th:field="*{entityName}">
+                    <label for="inputAngleEntityName">Name:</label>
+                    <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
+                           th:field="*{angleEntityName}">
                     <br>
                     <p>
                         <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
