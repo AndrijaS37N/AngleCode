@@ -73,5 +73,9 @@ public class MainController {
         return "angleEntities";
     }
 
-
+    @GetMapping("/delete/{id}")
+    public String deleteAngleEntity(@PathVariable("id") long id) {
+        angleEntityService.deleteAngleEntity(id);
+        return "redirect:/";
+    }
 }
