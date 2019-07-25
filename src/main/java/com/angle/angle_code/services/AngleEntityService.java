@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.angle.angle_code.entities.AngleEntity;
 
+import java.util.List;
+
 @Service
 public class AngleEntityService {
 
@@ -15,7 +17,19 @@ public class AngleEntityService {
         angleEntityRepository.save(angleEntity);
     }
 
-    public void printAllAngleEntities() {
-        angleEntityRepository.findAll().forEach(x -> System.out.println(x));
+    public void deleteAngleEntity(long id) {
+        angleEntityRepository.deleteAngleEntityByAngleEntityId(id);
+    }
+
+    public AngleEntity getAngleEntity(long id) {
+        return angleEntityRepository.getAngleEntityByAngleEntityId(id);
+    }
+
+//    public void printAllAngleEntities() {
+//        angleEntityRepository.findAll().forEach(x -> System.out.println(x));
+//    }
+
+    public List<AngleEntity> findAllAngleEntities() {
+        return angleEntityRepository.findAll();
     }
 }

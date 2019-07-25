@@ -10,6 +10,7 @@ import java.util.List;
 public interface AngleEntityRepository extends CrudRepository<AngleEntity, Long> {
 
     List<AngleEntity> findAll();
-    // List<AngleEntity> findAngleEntitiesByName(String name);
     List<AngleEntity> findAngleEntityByAngleEntityName(String name);
+    void deleteAngleEntityByAngleEntityId(long id);
+    AngleEntity getAngleEntityByAngleEntityId(long id);
 }

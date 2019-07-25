@@ -19,12 +19,18 @@
 <div class="container">
     <div class="row">
         <div class="container">
-            <h2>AngleEntity info:</h2>
-            <!-- Note: These 'entity.entityId and entity.entityName' warning is a false positive. -->
-            <p>Id: <span th:text="${angleEntity.angleEntityId}"></span></p>
-            <p>Name: <span th:text="${angleEntity.angleEntityName}"></span></p>
-            <div><a href="/">Back to home</a>.</div>
-            <hr>
+            <div class="col-md-4">
+                <h2>Angle Entity Info:</h2>
+                <!-- Note: These 'entity.entityId and entity.entityName' warning is a false positive. -->
+                <div class="well well-sm"><p class="center-block">Id: <span
+                        th:text="${angleEntity.angleEntityId}"></span></p></div>
+                <div class="well well-sm"><p class="center-block">Name: <span
+                        th:text="${angleEntity.angleEntityName}"></span></p></div>
+                <div><a href="/">Back to home</a>.</div>
+                <hr>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
         </div>
     </div>
 </div>

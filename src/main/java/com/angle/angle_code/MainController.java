@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class MainController {
 
@@ -28,7 +30,7 @@ public class MainController {
     @GetMapping("/")
     public String homePage(Model model) {
 
-        pageName = "Home";
+        pageName = "Home Page";
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
@@ -39,7 +41,7 @@ public class MainController {
     @PostMapping("/")
     public String homePagePost(@ModelAttribute AngleEntity angleEntity, Model model) {
 
-        pageName = "Show AngleEntity";
+        pageName = "Show Angle Entity Page";
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         angleEntityService.addAngleEntity(angleEntity);
@@ -50,12 +52,26 @@ public class MainController {
     @GetMapping("/showAngleEntity")
     public String showAngleEntityPage(Model model) {
 
-        pageName = "Show AngleEntity";
+        pageName = "Show Angle Entity Page";
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        angleEntityService.printAllAngleEntities();
         mainControllerLogger.info("Function showAngleEntityPage just before return");
         return "showAngleEntity";
     }
+
+    @GetMapping("/angleEntities")
+    public String angleEntitiesPage(Model model) {
+
+        pageName = "Entities Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntity", angleEntity);
+        List<AngleEntity> angleEntities = angleEntityService.findAllAngleEntities();
+        model.addAttribute("angleEntities", angleEntities);
+        mainControllerLogger.info("Function angleEntitiesPage just before return");
+        return "angleEntities";
+    }
+
+
 }

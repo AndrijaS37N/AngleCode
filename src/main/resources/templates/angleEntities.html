@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${appName} + ' ' + ${pageName}"></title>
+    <!--    Note: The UI libs. -->
+    <div th:replace="/fragments/head :: #headLibraries"></div>
+</head>
+<body>
+
+<div th:replace="/fragments/navbar :: nav"></div>
+
+<div class="bg-info">
+    <br><br><br><br>
+    <div class="container"><i>Placeholder.</i></div>
+    <br><br>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <h2>All Angle Entities:</h2>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th> Id: </th>
+                    <th> Name: </th>
+                    <th> Actions: </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${angleEntities.size() < 1}">
+                    <td colspan="2">No Angle Entities Available</td>
+                </tr>
+                <tr th:each="angleEntity : ${angleEntities}">
+                    <td><p th:text="${angleEntity.angleEntityId}"></p></td>
+                    <td><p th:text="${angleEntity.angleEntityName}"></p></td>
+                    <td><a href="" class="btn btn-success">Update</a> <a href="" class="btn btn-danger">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <div><a href="/">Back to home</a>.</div>
+            <hr>
+        </div>
+    </div>
+</div>
+</body>
+</html>

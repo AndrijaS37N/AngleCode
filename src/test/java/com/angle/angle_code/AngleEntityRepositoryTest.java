@@ -33,8 +33,5 @@ public class AngleEntityRepositoryTest {
 
         List<AngleEntity> angleEntities = angleEntityRepository.findAngleEntityByAngleEntityName(name);
         assertEquals(1, angleEntities.size());
-
-        // Note: Not working? AssertThat cannot resolve angleEntities...
-        // assertThat(angleEntities).extracting(AngleEntity::getAngleEntityName).containsOnly("Andrija");
     }
 }

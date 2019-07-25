@@ -4,3 +4,15 @@
     text-decoration: none;
     color: ghostwhite;
 }
+
+.well-sm p {
+    margin: 0;
+}
+
+footer .btn {
+    margin: 5px 5px 5px 5px;
+}
+
+td p {
+    margin: 5px 0px 0 0;
+}
