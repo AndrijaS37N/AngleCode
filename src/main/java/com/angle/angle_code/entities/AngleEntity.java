@@ -8,10 +8,10 @@ public class AngleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "angleEntityId")
+    @Column(name = "angle_entity_id")
     private long angleEntityId;
 
-    @Column(name = "angleEntityName")
+    @Column(name = "angle_entity_name")
     private String angleEntityName;
 
     public AngleEntity(String angleEntityName) {
