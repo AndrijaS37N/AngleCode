@@ -1,14 +1,14 @@
 package com.angle.angle_code;
 
 import com.angle.angle_code.entities.AngleEntity;
+import com.angle.angle_code.services.AngleEntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
@@ -22,6 +22,9 @@ public class MainController {
 
     private AngleEntity angleEntity = new AngleEntity("");
 
+    @Autowired
+    AngleEntityService angleEntityService;
+
     @GetMapping("/")
     public String homePage(Model model) {
 
@@ -29,7 +32,7 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        mainControllerLogger.info("MAIN CONTROLLER LOG POINT: homePage just before the return");
+        mainControllerLogger.info("Function homePage just before return");
         return "home";
     }
 
@@ -39,18 +42,20 @@ public class MainController {
         pageName = "Show AngleEntity";
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
-        mainControllerLogger.info("MAIN CONTROLLER LOG POINT: homePagePost just before the return");
+        angleEntityService.addAngleEntity(angleEntity);
+        mainControllerLogger.info("Function homePagePost just before return");
         return "showAngleEntity";
     }
 
     @GetMapping("/showAngleEntity")
-    public String showEntityPage(Model model) {
+    public String showAngleEntityPage(Model model) {
 
         pageName = "Show AngleEntity";
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        mainControllerLogger.info("MAIN CONTROLLER LOG POINT: showAngleEntityPage just before the return");
+        angleEntityService.printAllAngleEntities();
+        mainControllerLogger.info("Function showAngleEntityPage just before return");
         return "showAngleEntity";
     }
 }
