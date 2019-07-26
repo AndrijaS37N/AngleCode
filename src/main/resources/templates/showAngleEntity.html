@@ -30,7 +30,7 @@
                 <div><a href="/">Back to home</a>.</div>
                 <hr>
             </div>
-            <form action="#" disabled="true" th:action="@{/}" th:object="${angleEntity}" method="post">
+            <form action="#" th:action="@{/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}" method="post">
                 <div class="col-md-4">
                     <h3>Edit Angle Entity</h3>
                     <hr>
@@ -44,7 +44,8 @@
                         <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
                                th:field="*{angleEntityName}">
                         <br>
-                        <div class="container"></div>
+                        <button class="btn btn-primary" type="submit" value="Update">Update</button>
+                        <button class="btn btn-default" type="reset" value="Clear">Clear</button>
                         <br>
                     </div>
                 </div>
@@ -59,6 +60,7 @@
                 </a>
                 <br><br>
                 <p>Entities count: <span>X NUMBER</span></p>
+                <br>
             </div>
         </div>
     </div>

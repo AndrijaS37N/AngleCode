@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -92,10 +94,34 @@ public class MainController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editAngleEntity(@PathVariable("id") long id) {
+    public String editAngleEntity(@PathVariable("id") long id, Model model) {
 
-        // angleEntityService.editAngleEntity(id);
+        AngleEntity angleEntity = angleEntityService.findAngleEntity(id);
+        model.addAttribute("angleEntity", angleEntity);
         mainControllerLogger.info("Function editAngleEntity just before return");
-        return "redirect:/showAngleEntity";
+        return "showAngleEntity";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateAngleEntity(@PathVariable("id") long id, @Valid AngleEntity angleEntity, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            angleEntity.setAngleEntityId(id);
+            return "showAngleEntity";
+        }
+
+        angleEntityService.updateAngleEntity(angleEntity, id);
+        return "redirect:/viewAngleEntities";
+    }
+
+    @PostMapping("/addAngleEntity")
+    public String addAngleEntityPost(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        pageName = "Show Angle Entity Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        angleEntityService.addAngleEntity(angleEntity);
+        mainControllerLogger.info("Function addAngleEntityPost just before return");
+        return "showAngleEntity";
     }
 }
