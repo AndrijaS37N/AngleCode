@@ -19,14 +19,16 @@
 <div class="container">
     <div class="row">
         <div class="container">
-            <h3>All Angle Entities</h3>
+            <h3>All Angle Entities <span th:if="${angleEntitiesCount >= 1}"><span th:text="${angleEntitiesCount}"
+                                                                                  class="badge badge-secondary"></span></span>
+            </h3>
             <hr>
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th> Id: </th>
-                    <th> Name: </th>
-                    <th> Actions: </th>
+                    <th> Id:</th>
+                    <th> Name:</th>
+                    <th> Actions:</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,7 +38,11 @@
                 <tr th:each="angleEntity : ${angleEntities}">
                     <td th:text="${angleEntity.angleEntityId}"></td>
                     <td th:text="${angleEntity.angleEntityName}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success"><i class="far fa-edit"></i> Edit</a> <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Angle Entity?')"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+                    <td><a th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success"><i
+                            class="far fa-edit"></i> Edit</a> <a
+                            th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger"
+                            onclick="return confirm('Are you sure you want to delete this Angle Entity?')"><i
+                            class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                 </tr>
                 </tbody>
             </table>

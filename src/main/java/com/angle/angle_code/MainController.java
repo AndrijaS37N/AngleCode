@@ -10,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -24,7 +22,6 @@ public class MainController {
     public String pageName;
 
     private AngleEntity angleEntity = new AngleEntity("");
-    private List<AngleEntity> angleEntities;
 
     @Autowired
     AngleEntityService angleEntityService;
@@ -59,7 +56,6 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        mainControllerLogger.info("LOG POINT WOO WOO: " + angleEntityService.findAngleEntitiesCount());
         model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         mainControllerLogger.info("Function showAngleEntityPage just before return");
         return "showAngleEntity";
@@ -72,8 +68,8 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        angleEntities = angleEntityService.findAllAngleEntities();
-        model.addAttribute("angleEntities", angleEntities);
+        model.addAttribute("angleEntities", angleEntityService.findAllAngleEntities());
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         mainControllerLogger.info("Function viewAngleEntitiesPage just before return");
         return "viewAngleEntities";
     }
@@ -104,6 +100,7 @@ public class MainController {
         model.addAttribute("appName", appName);
         pageName = "Show Angle Entity Page";
         model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         mainControllerLogger.info("Function editAngleEntity just before return");
         return "showAngleEntity";
     }
@@ -117,6 +114,7 @@ public class MainController {
         }
 
         angleEntityService.updateAngleEntity(angleEntity, id);
+        mainControllerLogger.info("Function updateAngleEntity just before return");
         return "redirect:/viewAngleEntities";
     }
 
@@ -127,6 +125,7 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         angleEntityService.addAngleEntity(angleEntity);
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         mainControllerLogger.info("Function addAngleEntityPost just before return");
         return "showAngleEntity";
     }

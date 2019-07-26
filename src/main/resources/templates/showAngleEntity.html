@@ -15,52 +15,53 @@
     <div class="container"><i>Placeholder.</i></div>
     <br>
 </div>
-
 <div class="container">
     <div class="row">
-        <div class="container">
+        <div class="col-md-4">
+            <h3>Angle Entity Info</h3>
+            <hr>
+            <div class="well well-sm"><p class="center-block">Id: <span
+                    th:text="${angleEntity.angleEntityId}"></span></p></div>
+            <div class="well well-sm"><p class="center-block">Name: <span
+                    th:text="${angleEntity.angleEntityName}"></span></p></div>
+            <div><a href="/">Back to home</a>.</div>
+            <hr>
+        </div>
+        <form action="#" th:action="@{/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}"
+              method="post">
             <div class="col-md-4">
-                <h3>Angle Entity Info</h3>
+                <h3>Edit Angle Entity</h3>
                 <hr>
-                <div class="well well-sm"><p class="center-block">Id: <span
-                        th:text="${angleEntity.angleEntityId}"></span></p></div>
-                <div class="well well-sm"><p class="center-block">Name: <span
-                        th:text="${angleEntity.angleEntityName}"></span></p></div>
-                <div><a href="/">Back to home</a>.</div>
-                <hr>
-            </div>
-            <form action="#" th:action="@{/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}" method="post">
-                <div class="col-md-4">
-                    <h3>Edit Angle Entity</h3>
-                    <hr>
-                    <div class="form-group">
-                        <!--                        <label for="inputAngleEntityId">Id:</label> -->
-                        <input type="" th:disabled="true" class="form-control" id="inputAngleEntityId"
-                               placeholder="IDENTITY"
-                               th:field="*{angleEntityId}">
-                        <br>
-                        <!--                        <label for="inputAngleEntityName">Name:</label> -->
-                        <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
-                               th:field="*{angleEntityName}">
-                        <br>
-                        <button class="btn btn-primary" type="submit" value="Update">Update</button>
-                        <button class="btn btn-default" type="reset" value="Clear">Clear</button>
-                        <br>
-                    </div>
+                <div class="form-group">
+                    <!--                        <label for="inputAngleEntityId">Id:</label> -->
+                    <input type="" th:disabled="true" class="form-control" id="inputAngleEntityId"
+                           placeholder="IDENTITY"
+                           th:field="*{angleEntityId}">
+                    <br>
+                    <!--                        <label for="inputAngleEntityName">Name:</label> -->
+                    <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
+                           th:field="*{angleEntityName}">
+                    <br>
+                    <button class="btn btn-primary" type="submit" value="Update">Update</button>
+                    <button class="btn btn-default" type="reset" value="Clear">Clear</button>
+                    <br>
                 </div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4"></div>
-            </form>
-            <div class="col-md-4">
-                <h3>Options</h3>
-                <hr>
-                <a href="/viewAngleEntities" class="btn btn-lg btn-block btn-primary" type="button">View All <i class="fas fa-list-ol"></i></a>
-                <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-lg btn-block btn-danger" type="button" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete This Entity <i class="fa fa-trash" aria-hidden="true"></i></a>
-                <br>
-                <p th:if="${angleEntitiesCount < 1}">Entities count: <span><i class="far fa-empty-set"></i></span></p>
-                <p th:if="${angleEntitiesCount >= 1}">Entities count: <span th:text="${angleEntitiesCount}"></span></p>
-                <br>
             </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </form>
+        <div class="col-md-4">
+            <h3>Options</h3>
+            <hr>
+            <a href="/viewAngleEntities" class="btn btn-lg btn-block btn-primary" type="button">View All <i
+                    class="fas fa-list-ol"></i></a>
+            <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-lg btn-block btn-danger"
+               type="button" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete This
+                Entity <i class="fa fa-trash" aria-hidden="true"></i></a>
+            <br>
+            <p th:if="${angleEntitiesCount < 1}">Entities count: <span><i class="far fa-empty-set"></i></span></p>
+            <p th:if="${angleEntitiesCount >= 1}">Entities count: <span th:text="${angleEntitiesCount}"></span></p>
+            <br>
         </div>
     </div>
 </div>
