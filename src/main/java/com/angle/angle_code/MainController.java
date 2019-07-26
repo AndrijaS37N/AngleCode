@@ -24,6 +24,7 @@ public class MainController {
     public String pageName;
 
     private AngleEntity angleEntity = new AngleEntity("");
+    private List<AngleEntity> angleEntities;
 
     @Autowired
     AngleEntityService angleEntityService;
@@ -58,6 +59,8 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
+        mainControllerLogger.info("LOG POINT WOO WOO: " + angleEntityService.findAngleEntitiesCount());
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         mainControllerLogger.info("Function showAngleEntityPage just before return");
         return "showAngleEntity";
     }
@@ -69,9 +72,9 @@ public class MainController {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntity", angleEntity);
-        List<AngleEntity> angleEntities = angleEntityService.findAllAngleEntities();
+        angleEntities = angleEntityService.findAllAngleEntities();
         model.addAttribute("angleEntities", angleEntities);
-        mainControllerLogger.info("Function angleEntitiesPage just before return");
+        mainControllerLogger.info("Function viewAngleEntitiesPage just before return");
         return "viewAngleEntities";
     }
 
@@ -98,12 +101,15 @@ public class MainController {
 
         AngleEntity angleEntity = angleEntityService.findAngleEntity(id);
         model.addAttribute("angleEntity", angleEntity);
+        model.addAttribute("appName", appName);
+        pageName = "Show Angle Entity Page";
+        model.addAttribute("pageName", pageName);
         mainControllerLogger.info("Function editAngleEntity just before return");
         return "showAngleEntity";
     }
 
     @PostMapping("/update/{id}")
-    public String updateAngleEntity(@PathVariable("id") long id, @Valid AngleEntity angleEntity, BindingResult result, Model model) {
+    public String updateAngleEntity(@PathVariable("id") long id, @Valid AngleEntity angleEntity, BindingResult result) {
 
         if (result.hasErrors()) {
             angleEntity.setAngleEntityId(id);

@@ -42,4 +42,8 @@ public class AngleEntityService {
         // return angleEntityRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid AE Id:" + id));
         return angleEntityRepository.findAngleEntityByAngleEntityId(id);
     }
+
+    public int findAngleEntitiesCount() {
+        return angleEntityRepository.findAll().size();
+    }
 }

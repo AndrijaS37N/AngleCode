@@ -31,12 +31,12 @@
                 </thead>
                 <tbody>
                 <tr th:if="${angleEntities.size() < 1}">
-                    <td colspan="2">No Angle Entities Available</td>
+                    <td colspan="2">No Angle Entities Available <i class="far fa-empty-set"></i></td>
                 </tr>
                 <tr th:each="angleEntity : ${angleEntities}">
                     <td th:text="${angleEntity.angleEntityId}"></td>
                     <td th:text="${angleEntity.angleEntityName}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success">Edit</a> <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete</a></td>
+                    <td><a th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success"><i class="far fa-edit"></i> Edit</a> <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Angle Entity?')"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                 </tr>
                 </tbody>
             </table>
