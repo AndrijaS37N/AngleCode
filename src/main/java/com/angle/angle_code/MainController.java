@@ -19,8 +19,7 @@ public class MainController {
 
     @Value("${spring.application.name}")
     public String appName;
-
-    private String pageName;
+    public String pageName;
 
     private AngleEntity angleEntity = new AngleEntity("");
 
@@ -60,7 +59,7 @@ public class MainController {
         return "showAngleEntity";
     }
 
-    @GetMapping("/angleEntities")
+    @GetMapping("/viewAngleEntities")
     public String angleEntitiesPage(Model model) {
 
         pageName = "Entities Page";
@@ -70,12 +69,23 @@ public class MainController {
         List<AngleEntity> angleEntities = angleEntityService.findAllAngleEntities();
         model.addAttribute("angleEntities", angleEntities);
         mainControllerLogger.info("Function angleEntitiesPage just before return");
-        return "angleEntities";
+        return "viewAngleEntities";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteAngleEntity(@PathVariable("id") long id) {
         angleEntityService.deleteAngleEntity(id);
-        return "redirect:/";
+        return "redirect:/viewAngleEntities";
+    }
+
+    @GetMapping("/addAngleEntity")
+    public String addAngleEntityPage(Model model) {
+
+        pageName = "Add Angle Entity Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntity", angleEntity);
+        mainControllerLogger.info("Function addAngleEntityPage just before return");
+        return "addAngleEntity";
     }
 }

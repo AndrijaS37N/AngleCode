@@ -20,7 +20,8 @@
     <div class="row">
         <div class="container">
             <div class="col-md-4">
-                <h2>Angle Entity Info:</h2>
+                <h3>Angle Entity Info</h3>
+                <hr>
                 <!-- Note: These 'entity.entityId and entity.entityName' warning is a false positive. -->
                 <div class="well well-sm"><p class="center-block">Id: <span
                         th:text="${angleEntity.angleEntityId}"></span></p></div>
@@ -29,8 +30,15 @@
                 <div><a href="/">Back to home</a>.</div>
                 <hr>
             </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h3>Edit Angle Entity</h3>
+                <hr>
+            </div>
+            <div class="col-md-4">
+                <h3>View All Angle Entities</h3>
+                <hr>
+                <a href="/viewAngleEntities"><button class="btn btn-lg btn-primary" type="button" value="View All">View All</button></a>
+            </div>
         </div>
     </div>
 </div>

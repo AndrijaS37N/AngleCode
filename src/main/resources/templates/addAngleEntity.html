@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${appName} + ' ' + ${pageName}"> Page</title>
+    <!--    Note: The UI libs. -->
+    <div th:replace="/fragments/head :: #headLibraries"></div>
+</head>
+<body>
+
+<div th:replace="/fragments/navbar :: nav"></div>
+
+<div class="bg-info">
+    <br><br><br><br>
+    <div class="container"><i>Placeholder.</i></div>
+    <br><br>
+</div>
+<br>
+<div class="container">
+    <div class="container fa-border">
+        <form action="#" disabled="true" th:action="@{/}" th:object="${angleEntity}" method="post">
+            <div class="col-md-4">
+                <br>
+                <h3>Angle Entity Input</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="inputAngleEntityId">Id:</label>
+                    <input type="" th:disabled="true" class="form-control" id="inputAngleEntityId"
+                           placeholder="IDENTITY"
+                           th:field="*{angleEntityId}">
+                    <br>
+                    <label for="inputAngleEntityName">Name:</label>
+                    <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
+                           th:field="*{angleEntityName}">
+                    <br>
+                    <p>
+                        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+                        <button class="btn btn-default" type="reset" value="Clear">Clear</button>
+                    </p>
+                    <br>
+                    <div><a href="/">Back to home</a>.</div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

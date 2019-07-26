@@ -76,8 +76,7 @@
         </div>
     </div>
     <br><br>
-
-    <div class="container fa-border">
+    <div class="container fa-border" id="add_entity_placeholder">
         <div class="container" style="padding: 15px;">
             <img src="/images/keyush.png" width="200" alt="Keyush The Stunt Dog">
             <p>Welcome to my <span th:text="${appName}"></span>. <b>Ruf, ruf!</b></p>
@@ -85,27 +84,29 @@
         <form action="#" th:action="@{/}" th:object="${angleEntity}" method="post">
             <div class="col-md-4">
                 <br>
-                <h4>Angle Entity Input:</h4>
+                <h3>Angle Entity Input</h3>
                 <hr>
                 <div class="form-group">
                     <label for="inputAngleEntityId">Id:</label>
-                    <input type="" disabled="true" class="form-control" id="inputAngleEntityId" placeholder="IDENTITY"
+                    <input type="" th:disabled="true" class="form-control" id="inputAngleEntityId" placeholder="IDENTITY"
                            th:field="*{angleEntityId}">
                     <br>
                     <label for="inputAngleEntityName">Name:</label>
-                    <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
+                    <input type="text" th:disabled="true" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
                            th:field="*{angleEntityName}">
                     <br>
                     <p>
-                        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
-                        <button class="btn btn-default" type="reset" value="Clear">Clear</button>
+                        <button class="btn btn-primary" th:disabled="true" type="submit" value="Submit">Submit</button>
+                        <button class="btn btn-default" th:disabled="true" type="reset" value="Clear">Clear</button>
                     </p>
                     <br>
+                    <a href="/addAngleEntity"><button class="btn btn-lg btn-primary" type="button" value="Add Angle Entity">Add Angle Entity</button></a>
                 </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4"></div>
         </form>
+        <br>
     </div>
     <br><br>
     <div th:fragment="footer"></div>
