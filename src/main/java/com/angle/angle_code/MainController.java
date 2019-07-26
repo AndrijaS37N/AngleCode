@@ -37,6 +37,7 @@ public class MainController {
         return "home";
     }
 
+    // Note: Not really using this post method.
     @PostMapping("/")
     public String homePagePost(@ModelAttribute AngleEntity angleEntity, Model model) {
 
@@ -60,7 +61,7 @@ public class MainController {
     }
 
     @GetMapping("/viewAngleEntities")
-    public String angleEntitiesPage(Model model) {
+    public String viewAngleEntitiesPage(Model model) {
 
         pageName = "Entities Page";
         model.addAttribute("appName", appName);
@@ -75,6 +76,7 @@ public class MainController {
     @GetMapping("/delete/{id}")
     public String deleteAngleEntity(@PathVariable("id") long id) {
         angleEntityService.deleteAngleEntity(id);
+        mainControllerLogger.info("Function deleteAngleEntity just before return");
         return "redirect:/viewAngleEntities";
     }
 
@@ -87,5 +89,13 @@ public class MainController {
         model.addAttribute("angleEntity", angleEntity);
         mainControllerLogger.info("Function addAngleEntityPage just before return");
         return "addAngleEntity";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editAngleEntity(@PathVariable("id") long id) {
+
+        // angleEntityService.editAngleEntity(id);
+        mainControllerLogger.info("Function editAngleEntity just before return");
+        return "redirect:/showAngleEntity";
     }
 }

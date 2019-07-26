@@ -3,7 +3,7 @@
 
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
-    <title th:text="${appName} + ' ' + ${pageName}"> Page</title>
+    <title th:text="${appName} + ' | ' + ${pageName}"> Page</title>
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
 </head>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <br><br>
+    <br>
 </div>
 <br>
 <div class="container">

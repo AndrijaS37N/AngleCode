@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${appName} + ' ' + ${pageName}"></title>
+    <title th:text="${appName} + ' | ' + ${pageName}"></title>
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
 </head>
@@ -11,9 +11,9 @@
 <div th:replace="/fragments/navbar :: nav"></div>
 
 <div class="bg-info">
-    <br><br><br><br>
+    <br><br><br><br><br>
     <div class="container"><i>Placeholder.</i></div>
-    <br><br>
+    <br>
 </div>
 
 <div class="container">
@@ -36,7 +36,7 @@
                 <tr th:each="angleEntity : ${angleEntities}">
                     <td th:text="${angleEntity.angleEntityId}"></td>
                     <td th:text="${angleEntity.angleEntityName}"></td>
-                    <td><a href="" class="btn btn-success">Update</a> <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete</a></td>
+                    <td><a href="/showAngleEntity" class="btn btn-success">Edit</a> <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

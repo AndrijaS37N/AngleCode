@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${appName} + ' ' + ${pageName}"> Page</title>
+    <title th:text="${appName} + ' | ' + ${pageName}"> Page</title>
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
 </head>
@@ -11,9 +11,9 @@
 <div th:replace="/fragments/navbar :: nav"></div>
 
 <div class="bg-info">
-    <br><br><br><br>
+    <br><br><br><br><br>
     <div class="container"><i>Placeholder.</i></div>
-    <br><br>
+    <br>
 </div>
 
 <div class="container">
@@ -30,14 +30,35 @@
                 <div><a href="/">Back to home</a>.</div>
                 <hr>
             </div>
-            <div class="col-md-4">
-                <h3>Edit Angle Entity</h3>
-                <hr>
-            </div>
+            <form action="#" disabled="true" th:action="@{/}" th:object="${angleEntity}" method="post">
+                <div class="col-md-4">
+                    <h3>Edit Angle Entity</h3>
+                    <hr>
+                    <div class="form-group">
+                        <!--                        <label for="inputAngleEntityId">Id:</label> -->
+                        <input type="" th:disabled="true" class="form-control" id="inputAngleEntityId"
+                               placeholder="IDENTITY"
+                               th:field="*{angleEntityId}">
+                        <br>
+                        <!--                        <label for="inputAngleEntityName">Name:</label> -->
+                        <input type="text" class="form-control" id="inputAngleEntityName" placeholder="Keyush"
+                               th:field="*{angleEntityName}">
+                        <br>
+                        <div class="container"></div>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </form>
             <div class="col-md-4">
                 <h3>View All Angle Entities</h3>
                 <hr>
-                <a href="/viewAngleEntities"><button class="btn btn-lg btn-primary" type="button" value="View All">View All</button></a>
+                <a href="/viewAngleEntities">
+                    <button class="btn btn-lg btn-primary" type="button" value="View All">View All</button>
+                </a>
+                <br><br>
+                <p>Entities count: <span>X NUMBER</span></p>
             </div>
         </div>
     </div>

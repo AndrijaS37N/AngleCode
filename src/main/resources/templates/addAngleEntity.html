@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${appName} + ' ' + ${pageName}"> Page</title>
+    <title th:text="${appName} + ' | ' + ${pageName}"> Page</title>
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
 </head>
@@ -11,9 +11,9 @@
 <div th:replace="/fragments/navbar :: nav"></div>
 
 <div class="bg-info">
-    <br><br><br><br>
+    <br><br><br><br><br>
     <div class="container"><i>Placeholder.</i></div>
-    <br><br>
+    <br>
 </div>
 <br>
 <div class="container">
