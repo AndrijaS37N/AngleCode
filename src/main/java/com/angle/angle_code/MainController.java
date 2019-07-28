@@ -129,4 +129,26 @@ public class MainController {
         mainControllerLogger.info("Function addAngleEntityPost just before return");
         return "showAngleEntity";
     }
+
+    @GetMapping("/logIn")
+    public String logInPage(Model model) {
+
+        pageName = "Log In Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntity", angleEntity);
+        mainControllerLogger.info("Function logInPage just before return");
+        return "logIn";
+    }
+
+    @GetMapping("/register")
+    public String registerPage(Model model) {
+
+        pageName = "Sign Up Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntity", angleEntity);
+        mainControllerLogger.info("Function registerPage just before return");
+        return "register";
+    }
 }

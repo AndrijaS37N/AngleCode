@@ -18,12 +18,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="container">
+        <div class="container-fluid">
             <h3>All Angle Entities <span th:if="${angleEntitiesCount >= 1}"><span th:text="${angleEntitiesCount}"
                                                                                   class="badge badge-secondary"></span></span>
             </h3>
+            <form class="form-inline">
+                <input style="margin-top: 5px; width: 40%; min-width: max-content;" class="form-control input-lg" type="search" placeholder="Search for an Entity." aria-label="Search">
+                <button style="margin-top: 5px;" class="btn btn-info btn-lg" type="submit">Search</button>
+            </form>
             <hr>
-            <table class="table table-hover">
+            <table class="table table-hovesr">
                 <thead>
                 <tr>
                     <th> Id:</th>
@@ -38,8 +42,8 @@
                 <tr th:each="angleEntity : ${angleEntities}">
                     <td th:text="${angleEntity.angleEntityId}"></td>
                     <td th:text="${angleEntity.angleEntityName}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success"><i
-                            class="far fa-edit"></i> Edit</a> <a
+                    <td><a style="margin: 5px 5px 5px 0;" th:href="@{/edit/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-success"><i
+                            class="far fa-edit"></i> Edit</a> <a style="margin: 5px 5px 5px 0;"
                             th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-danger"
                             onclick="return confirm('Are you sure you want to delete this Angle Entity?')"><i
                             class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>

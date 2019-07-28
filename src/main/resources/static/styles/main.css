@@ -10,7 +10,7 @@
 }
 
 footer .btn {
-    margin: 5px 5px 5px 5px;
+    margin: 5px;
 }
 
 #add_entity_placeholder {
@@ -47,4 +47,8 @@ footer .btn-primary {
 footer .btn-primary:hover {
     opacity: 1;
     border-color: black;
+}
+
+#navbar_right_buttons .btn {
+    margin-top: 8px;
 }
