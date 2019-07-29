@@ -46,4 +46,9 @@ public class AngleEntityService {
     public int findAngleEntitiesCount() {
         return angleEntityRepository.findAll().size();
     }
+
+    public List<AngleEntity> listAngleEntitiesByName(String searchedString) {
+
+        return angleEntityRepository.findAngleEntitiesByAngleEntityNameStartingWith(searchedString);
+    }
 }

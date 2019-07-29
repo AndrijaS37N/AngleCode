@@ -126,6 +126,9 @@ public class MainController {
         model.addAttribute("pageName", pageName);
         angleEntityService.addAngleEntity(angleEntity);
         model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
+
+        mainControllerLogger.info("Function addAngleEntityPost name = " + angleEntity.getAngleEntityName());
+
         mainControllerLogger.info("Function addAngleEntityPost just before return");
         return "showAngleEntity";
     }
@@ -150,5 +153,15 @@ public class MainController {
         model.addAttribute("angleEntity", angleEntity);
         mainControllerLogger.info("Function registerPage just before return");
         return "register";
+    }
+
+    @PostMapping("/viewAngleEntities")
+    public String searchAngleEntities(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        mainControllerLogger.info("Function searchAngleEntities angleEntityName = " + angleEntity.getAngleEntityName());
+        mainControllerLogger.info("Function searchAngleEntities angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()) = " + angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        mainControllerLogger.info("Function searchAngleEntities just before return");
+        return "viewAngleEntities";
     }
 }

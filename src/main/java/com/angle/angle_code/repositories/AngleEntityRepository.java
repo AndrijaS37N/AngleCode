@@ -17,4 +17,7 @@ public interface AngleEntityRepository extends CrudRepository<AngleEntity, Long>
 
     // Note: Use findById for additions like .orElseThrow().
     AngleEntity findAngleEntityByAngleEntityId(long id);
+
+    // Note: Oh - oh.
+    List<AngleEntity> findAngleEntitiesByAngleEntityNameStartingWith(String searchedString);
 }

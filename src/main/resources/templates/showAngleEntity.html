@@ -24,7 +24,7 @@
                     th:text="${angleEntity.angleEntityId}"></span></p></div>
             <div class="well well-sm"><p class="center-block">Name: <span
                     th:text="${angleEntity.angleEntityName}"></span></p></div>
-            <div><a href="/">Back to home</a>.</div>
+            <div><a href="/">Back To Home</a> <a style="alignment: right; float: right;" href="/addAngleEntity">Add Another One</a></div>
             <hr>
         </div>
         <form action="#" th:action="@{/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}"
