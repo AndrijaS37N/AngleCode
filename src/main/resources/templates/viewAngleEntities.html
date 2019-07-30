@@ -39,7 +39,8 @@
                 </thead>
                 <tbody>
                 <tr th:if="${angleEntities.size() < 1}">
-                    <td colspan="2">No Angle Entities Available <i class="far fa-empty-set"></i></td>
+<!--                    <i class="fab fa-creative-commons-zero"></i> -->
+                    <td colspan="2">No Angle Entities Found | <i class="far fa-folder"></i></td>
                 </tr>
                 <tr th:each="angleEntity : ${angleEntities}">
                     <td th:text="${angleEntity.angleEntityId}"></td>

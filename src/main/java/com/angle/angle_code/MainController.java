@@ -158,10 +158,32 @@ public class MainController {
     @PostMapping("/viewAngleEntities")
     public String searchAngleEntities(@ModelAttribute AngleEntity angleEntity, Model model) {
 
+        pageName = "Entities Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
         model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
         mainControllerLogger.info("Function searchAngleEntities angleEntityName = " + angleEntity.getAngleEntityName());
         mainControllerLogger.info("Function searchAngleEntities angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()) = " + angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
         mainControllerLogger.info("Function searchAngleEntities just before return");
         return "viewAngleEntities";
+    }
+
+    @PostMapping("/navbarSearchAngleEntity")
+    public String searchAngleEntitiesFromNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        pageName = "Entities Page";
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", pageName);
+        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        mainControllerLogger.info("Function searchAngleEntitiesFromNavbar just before return");
+        return "viewAngleEntities";
+    }
+
+    @GetMapping("/navbar")
+    public String passObjectToNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        model.addAttribute("angleEntity", angleEntity);
+        mainControllerLogger.info("Function passObjectToNavbar just before return");
+        return "navbar";
     }
 }

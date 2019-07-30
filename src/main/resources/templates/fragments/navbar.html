@@ -17,10 +17,22 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Entities <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" xmlns:th="http://www.thymeleaf.org">
                             <li><a href="/viewAngleEntities">View All <i class="fas fa-list-ul"></i></a></li>
                             <li><a href="/addAngleEntity">Add Entity <i class="fas fa-pencil-alt"></i></a></li>
-                            <li><a href="/404">A3</a></li>
+                            <li><a>
+                                <form class="form-inline" th:action="@{/navbarSearchAngleEntity}"
+                                      th:object="${angleEntity}"
+                                      method="post">
+
+                                    <input th:field="*{angleEntityName}"
+                                           class="form-control input" type="search"
+                                           placeholder="Search for an Entity."
+                                           aria-label="Search" style="margin: 5px 0 5px 0;">
+                                    <button style="margin: 5px 0 5px 0;" class="btn btn-info" type="submit">Search</button>
+                                    <br>
+                                </form>
+                            </a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

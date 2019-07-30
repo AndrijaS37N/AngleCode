@@ -12,15 +12,15 @@
 
 <div class="bg-info">
     <br><br><br><br><br>
-    <div class="container"><i>Placeholder.</i></div>
+    <div class="container"><i>Placeholder. TODO - Security stuff.</i></div>
     <br>
 </div>
 <br>
 <div class="container">
     <div class="row">
         <br><br><br>
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
             <form class="form-signup">
                 <h3 class="form-signup-heading">Please Sign Up</h3>
                 <hr>
@@ -33,18 +33,55 @@
                        placeholder="Your password."
                        required>
                 <br>
-
-                <p>....... TODO </p>
-
+                <label for="confirmPassword" class="sr-only">Confirm you password, please.</label>
+                <input type="password" id="confirmPassword" name="password" class="form-control"
+                       placeholder="Confirm you password, please."
+                       required>
+                <br>
+                <label for="username" class="sr-only">Your username.</label>
+                <input type="text" id="username" name="username" class="form-control"
+                       placeholder="Your username."
+                       required>
+                <br>
+                <label for="firstName" class="sr-only">Your fist name.</label>
+                <input type="text" id="firstName" name="firstName" class="form-control"
+                       placeholder="Your first name."
+                       required>
+                <br>
+                <label for="lastName" class="sr-only">Your last name.</label>
+                <input type="text" id="lastName" name="lastName" class="form-control"
+                       placeholder="Your last name."
+                       required>
+                <br>
+                <label for="dob" class="sr-only">Your date of birth.</label>
+                <input type="date" id="dob" name="dob" class="form-control"
+                       placeholder="Your date of birth."
+                       required>
+                <br>
+                <label for="image" class="sr-only">Your profile picture.</label>
+                <input type="" id="image" name="image" class="form-control"
+                       placeholder="Your profile picture."
+                       required>
+                <br>
+                <br>
+                <label>Terms and conditions: <a href="" style="text-decoration: underline;">References.</a></label>
+                <p>Please read all of the terms and conditions and check the box below if you agree.</p>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="agree-or-not"> I agree to the terms and conditions.
+                    </label>
+                </div>
+                <br>
                 <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Register
                 </button>
             </form>
             <hr>
             <p> Already have an account? Sign in <span
-                    class="glyphicon glyphicon-user"></span>  <a href="/logIn">here</a>.</p>
+                    class="glyphicon glyphicon-user"></span> <a href="/logIn">here</a>.</p>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-lg-3"></div>
     </div>
+    <br>
 </div>
 </body>
 </html>
