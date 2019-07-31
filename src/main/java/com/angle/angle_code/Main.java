@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main implements CommandLineRunner {
 
-    public final static Logger bootLogger = LoggerFactory.getLogger(MainController.class);
+    private final static Logger bootLogger = LoggerFactory.getLogger(MainController.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

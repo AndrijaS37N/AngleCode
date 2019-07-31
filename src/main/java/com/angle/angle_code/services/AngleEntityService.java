@@ -23,10 +23,6 @@ public class AngleEntityService {
         angleEntityRepository.deleteAngleEntityByAngleEntityId(id);
     }
 
-//    public AngleEntity getAngleEntity(long id) {
-//        return angleEntityRepository.getAngleEntityByAngleEntityId(id);
-//    }
-
     public List<AngleEntity> findAllAngleEntities() {
         return angleEntityRepository.findAll();
     }
