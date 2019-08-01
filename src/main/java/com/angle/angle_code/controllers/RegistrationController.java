@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 public class RegistrationController {
@@ -71,14 +71,18 @@ public class RegistrationController {
         errorList.clear();
         model.addAttribute("errorMessages", errorList);
 
-        // TODO -> Registration completed. Now make it more secure.
+        // TODO -> Registration completed. Input params are not checked. Make it more secure.
 
         if (userService.checkIfUserExists(user)) {
             errorList.add(basicRegistrationError);
             errorList.add(checkIfUserExistsMessage);
-        } else if (userService.checkIfPasswordsMatch(user.getUserPassword(), user.getConfirmedPassword())) {
+        } else if (!userService.checkIfPasswordsMatch(user.getUserPassword(), user.getConfirmedPassword())) {
             errorList.add(checkIfPasswordsMatchMessage);
         } else {
+
+            registrationControllerLogger.warn("Password: " + user.getUserPassword());
+            registrationControllerLogger.warn("Confirmed password: " + user.getConfirmedPassword());
+
             userService.addUser(user);
             model.addAttribute("successMessage", successfulRegistrationMessage);
 

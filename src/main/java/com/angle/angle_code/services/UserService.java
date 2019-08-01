@@ -21,6 +21,6 @@ public class UserService {
     }
 
     public boolean checkIfPasswordsMatch(String password, String confirmedPassword) {
-        return (password == confirmedPassword);
+        return password.equals(confirmedPassword);
     }
 }

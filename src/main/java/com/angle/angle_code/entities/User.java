@@ -1,11 +1,8 @@
 package com.angle.angle_code.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Table(name = "user")
 @Entity
@@ -41,22 +38,21 @@ public class User {
     private String angleUsername;
 
     // Note: Not required for registration for now.
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "user_dob")
-    private Date userDateOfBirth;
+    @Column(name = "age")
+    private int age;
     @Column(name = "token")
     private String token;
 
     // TODO -> Note: Add role connection.
 
-    public User(long userId, String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, Date userDateOfBirth, String token) {
+    public User(long userId, String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, int age, String token) {
         this.userId = userId;
         this.emailAddress = emailAddress;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userPassword = userPassword;
         this.angleUsername = angleUsername;
-        this.userDateOfBirth = userDateOfBirth;
+        this.age = age;
         this.token = token;
     }
 
@@ -119,12 +115,12 @@ public class User {
         this.confirmedPassword = confirmedPassword;
     }
 
-    public Date getUserDateOfBirth() {
-        return userDateOfBirth;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserDateOfBirth(Date userDateOfBirth) {
-        this.userDateOfBirth = userDateOfBirth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getToken() {
