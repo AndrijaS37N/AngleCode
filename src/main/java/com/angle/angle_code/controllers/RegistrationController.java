@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class RegistrationController {
@@ -33,36 +34,63 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    @Value("${registration.message.successfulRegistration}")
+    private String successfulRegistrationMessage;
+
+    private List<String> errorList = new ArrayList<>();
+    @Value("${registration.message.error}")
+    private String basicRegistrationError;
+    @Value("${registration.error.checkIfUserExists}")
+    private String checkIfUserExistsMessage;
+    @Value("${registration.error.checkIfPasswordsMatch}")
+    private String checkIfPasswordsMatchMessage;
+
     @GetMapping("/register")
     public String registerPage(Model model) {
 
+        errorList.clear();
+        model.addAttribute("errorMessages", errorList);
+
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", registerPageName);
+        model.addAttribute("user", new User());
         model.addAttribute("angleEntity", new AngleEntity());
+        model.addAttribute("errorMessages", errorList);
+
         registrationControllerLogger.info("Function registerPage just before return");
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerPagePost(@ModelAttribute @Valid User user, Model model) {
+    public String registerPagePost(@Valid @ModelAttribute("user") User user, Model model) {
 
         model.addAttribute("appName", appName);
-        model.addAttribute("pageName", homePageName);
-        model.addAttribute("user", new User());
+        model.addAttribute("pageName", registerPageName);
+        model.addAttribute("angleEntity", new AngleEntity());
 
-        // TODO -> Registration.
+        errorList.clear();
+        model.addAttribute("errorMessages", errorList);
 
-        List<String> errorList = new ArrayList<>();
+        // TODO -> Registration completed. Now make it more secure.
 
-        if(userService.checkIfUserExists(user)) {
-            errorList.add("registration.message.error");
-            errorList.add("registration.error.checkIfUserExists");
-            model.addAttribute("errorMessages", errorList);
-            return "register";
+        if (userService.checkIfUserExists(user)) {
+            errorList.add(basicRegistrationError);
+            errorList.add(checkIfUserExistsMessage);
+        } else if (userService.checkIfPasswordsMatch(user.getUserPassword(), user.getConfirmedPassword())) {
+            errorList.add(checkIfPasswordsMatchMessage);
         } else {
             userService.addUser(user);
-            model.addAttribute("successMessage", "registration.message.successfulRegistration");
-            return "logIn";
+            model.addAttribute("successMessage", successfulRegistrationMessage);
+
+//            try {
+//                TimeUnit.SECONDS.sleep(3);
+//            } catch (InterruptedException error) {
+//                registrationControllerLogger.error(error.toString());
+//            }
+
+            model.addAttribute("user", new User());
         }
+
+        return "register";
     }
 }

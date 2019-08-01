@@ -19,4 +19,8 @@ public class UserService {
     public boolean checkIfUserExists(User user) {
         return userRepository.existsByEmailAddress(user.getEmailAddress());
     }
+
+    public boolean checkIfPasswordsMatch(String password, String confirmedPassword) {
+        return (password == confirmedPassword);
+    }
 }

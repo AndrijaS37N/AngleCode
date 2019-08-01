@@ -18,10 +18,27 @@
 <br>
 <div class="container">
     <div class="row">
-        <br><br><br>
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
-<!--            CONTINUE HERE -->
+        <br>
+        <div class="col-lg-4">
+            <div class="alert alert-success" th:if="${successMessage != null}">
+                <b>Yay!</b>
+                <p th:text="${successMessage}"></p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+            </div>
+            <div class="alert alert-info" th:if="${successMessage != null}">
+                <strong>Enter your new account!</strong>
+                <p>You can access you account by <a href="/logIn">logging in</a>.</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+            </div>
+            <br>
+        </div>
+        <div class="col-lg-4">
             <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
                 <h3 class="form-signup-heading">Please Sign Up</h3>
                 <hr>
@@ -41,12 +58,14 @@
                        required>
                 <br>
                 <p th:text="#{registration.label.user.password}"></p>
-                <input th:field="*{userPassword}" type="password" id="inputPassword" name="password" class="form-control"
+                <input th:field="*{userPassword}" type="password" id="inputPassword" name="password"
+                       class="form-control"
                        placeholder="Input a password greater than 8 characters in length."
                        required>
                 <br>
                 <p th:text="#{registration.label.user.confirmPassword}"></p>
-                <input th:field="*{confirmedPassword}" type="password" id="confirmPassword" name="password" class="form-control"
+                <input th:field="*{confirmedPassword}" type="password" id="confirmPassword" name="password"
+                       class="form-control"
                        placeholder="The password you entered above."
                        required>
                 <br>
@@ -55,16 +74,16 @@
                        placeholder="keyush_123"
                        required>
                 <br>
-<!--                Note: Not required. -->
+                <!--                Note: Not required. -->
                 <p th:text="#{registration.label.user.dob}"></p>
                 <input th:field="*{userDateOfBirth}" type="date" id="dob" name="dob" class="form-control"
                        placeholder="01/01/1996">
                 <br>
-<!--                <label for="image" class="sr-only">Your profile picture.</label>-->
-<!--                <input type="" id="image" name="image" class="form-control"-->
-<!--                       placeholder="Your profile picture."-->
-<!--                       required>-->
-<!--                <br>-->
+                <!--                <label for="image" class="sr-only">Your profile picture.</label>-->
+                <!--                <input type="" id="image" name="image" class="form-control"-->
+                <!--                       placeholder="Your profile picture."-->
+                <!--                       required>-->
+                <!--                <br>-->
                 <br>
                 <label>Terms and conditions: <a href="" style="text-decoration: underline;">References.</a></label>
                 <p>Please read all of the terms and conditions and check the box below if you agree.</p>
@@ -80,10 +99,24 @@
             <hr>
             <p> Already have an account? Sign in <span
                     class="glyphicon glyphicon-user"></span> <a href="/logIn">here</a>.</p>
+            <br>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-4">
+            <div th:if="${errorMessages.size() > 0}" class="alert alert-warning"
+                 role="alert">
+                <strong>Holy guacamole!</strong>
+                <p>This is the error list:</p>
+                <ul th:each="errorMessage : ${errorMessages}">
+                    <li th:text="${errorMessage}"></li>
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+            </div>
+            <br>
+        </div>
     </div>
-    <br>
 </div>
 </body>
 </html>

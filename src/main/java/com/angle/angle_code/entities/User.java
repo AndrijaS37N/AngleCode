@@ -1,5 +1,7 @@
 package com.angle.angle_code.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -39,6 +41,7 @@ public class User {
     private String angleUsername;
 
     // Note: Not required for registration for now.
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "user_dob")
     private Date userDateOfBirth;
     @Column(name = "token")
