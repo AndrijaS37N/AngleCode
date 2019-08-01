@@ -4,5 +4,8 @@ import com.angle.angle_code.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-//@Repository
-//public interface UserRepository extends CrudRepository<User, Long> {}
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    boolean existsByEmailAddress(String emailAddress);
+}

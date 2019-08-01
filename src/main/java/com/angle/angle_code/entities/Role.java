@@ -5,6 +5,8 @@ public class Role {
     private long roleId;
     private String roleName;
 
+    // TODO -> Add user connection.
+
     public Role(long roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;

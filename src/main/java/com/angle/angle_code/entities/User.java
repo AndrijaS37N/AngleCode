@@ -1,17 +1,47 @@
 package com.angle.angle_code.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@Table(name = "user")
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private long userId;
+    @NotNull
+    @NotEmpty
+    @Column(name = "email_address")
     private String emailAddress;
+    @NotNull
+    @NotEmpty
+    @Column(name = "user_first_name")
     private String userFirstName;
+    @NotNull
+    @NotEmpty
+    @Column(name = "user_last_name")
     private String userLastName;
+    @NotNull
+    @NotEmpty
+    @Column(name = "user_password")
     private String userPassword;
+    @NotNull
+    @NotEmpty
+    @Transient
     private String confirmedPassword;
+    @NotNull
+    @NotEmpty
+    @Column(name = "angle_username")
     private String angleUsername;
+
+    // Note: Not required for registration for now.
+    @Column(name = "user_dob")
     private Date userDateOfBirth;
+    @Column(name = "token")
     private String token;
 
     // TODO -> Note: Add role connection.
@@ -25,6 +55,9 @@ public class User {
         this.angleUsername = angleUsername;
         this.userDateOfBirth = userDateOfBirth;
         this.token = token;
+    }
+
+    public User() {
     }
 
     public String getEmailAddress() {

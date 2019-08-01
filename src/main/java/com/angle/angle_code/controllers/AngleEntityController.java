@@ -23,34 +23,39 @@ public class AngleEntityController {
 
     @Value("${spring.application.name}")
     public String appName;
-    private String pageName;
-    private AngleEntity angleEntity = new AngleEntity("");
+    @Value("${page.name.homePage}")
+    private String homePageName;
+    @Value("${page.name.entitiesPage}")
+    private String entitiesPageName;
+    @Value("${page.name.addAngleEntityPage}")
+    private String addAngleEntityPageName;
+    @Value("${page.name.showAngleEntityPage}")
+    private String showAngleEntityPageName;
 
     @Autowired
     private AngleEntityService angleEntityService;
 
-    @GetMapping("/showAngleEntity")
-    public String showAngleEntityPage(Model model) {
-
-        pageName = "Show Angle Entity Page";
-        model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
-        model.addAttribute("angleEntity", angleEntity);
-        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
-        angleEntityControllerLogger.info("Function showAngleEntityPage just before return");
-        return "showAngleEntity";
-    }
-
     @GetMapping("/viewAngleEntities")
     public String viewAngleEntitiesPage(Model model) {
 
-        pageName = "Entities Page";
         model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
-        model.addAttribute("angleEntity", angleEntity);
+        model.addAttribute("pageName", entitiesPageName);
+        model.addAttribute("angleEntity", new AngleEntity());
         model.addAttribute("angleEntities", angleEntityService.findAllAngleEntities());
         model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         angleEntityControllerLogger.info("Function viewAngleEntitiesPage just before return");
+        return "viewAngleEntities";
+    }
+
+    @PostMapping("/viewAngleEntities")
+    public String searchAngleEntities(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", entitiesPageName);
+        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        angleEntityControllerLogger.info("Function searchAngleEntities angleEntityName = " + angleEntity.getAngleEntityName());
+        angleEntityControllerLogger.info("Function searchAngleEntities angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()) = " + angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        angleEntityControllerLogger.info("Function searchAngleEntities just before return");
         return "viewAngleEntities";
     }
 
@@ -61,25 +66,13 @@ public class AngleEntityController {
         return "redirect:/viewAngleEntities";
     }
 
-    @GetMapping("/addAngleEntity")
-    public String addAngleEntityPage(Model model) {
-
-        pageName = "Add Angle Entity Page";
-        model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
-        model.addAttribute("angleEntity", angleEntity);
-        angleEntityControllerLogger.info("Function addAngleEntityPage just before return");
-        return "addAngleEntity";
-    }
-
     @GetMapping("/edit/{id}")
     public String editAngleEntity(@PathVariable("id") long id, Model model) {
 
-        AngleEntity angleEntity = angleEntityService.findAngleEntity(id);
-        model.addAttribute("angleEntity", angleEntity);
+        AngleEntity foundAngleEntity = angleEntityService.findAngleEntity(id);
+        model.addAttribute("angleEntity", foundAngleEntity);
         model.addAttribute("appName", appName);
-        pageName = "Show Angle Entity Page";
-        model.addAttribute("pageName", pageName);
+        model.addAttribute("pageName", showAngleEntityPageName);
         model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         angleEntityControllerLogger.info("Function editAngleEntity just before return");
         return "showAngleEntity";
@@ -98,41 +91,37 @@ public class AngleEntityController {
         return "redirect:/viewAngleEntities";
     }
 
+    @GetMapping("/addAngleEntity")
+    public String addAngleEntityPage(Model model) {
+
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", addAngleEntityPageName);
+        model.addAttribute("angleEntity", new AngleEntity());
+        angleEntityControllerLogger.info("Function addAngleEntityPage just before return");
+        return "addAngleEntity";
+    }
+
     @PostMapping("/addAngleEntity")
     public String addAngleEntityPost(@ModelAttribute AngleEntity angleEntity, Model model) {
 
-        pageName = "Show Angle Entity Page";
         model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
+        model.addAttribute("pageName", showAngleEntityPageName);
         angleEntityService.addAngleEntity(angleEntity);
         model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
-        angleEntityControllerLogger.info("Function addAngleEntityPost name = " + angleEntity.getAngleEntityName());
+        angleEntityControllerLogger.info("Function addAngleEntityPost AngleEntity name = " + angleEntity.getAngleEntityName());
         angleEntityControllerLogger.info("Function addAngleEntityPost just before return");
         return "showAngleEntity";
     }
 
-    @PostMapping("/viewAngleEntities")
-    public String searchAngleEntities(@ModelAttribute AngleEntity angleEntity, Model model) {
+    @GetMapping("/showAngleEntity")
+    public String showAngleEntityPage(Model model) {
 
-        pageName = "Entities Page";
         model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
-        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
-        angleEntityControllerLogger.info("Function searchAngleEntities angleEntityName = " + angleEntity.getAngleEntityName());
-        angleEntityControllerLogger.info("Function searchAngleEntities angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()) = " + angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
-        angleEntityControllerLogger.info("Function searchAngleEntities just before return");
-        return "viewAngleEntities";
-    }
-
-    @PostMapping("/navbarSearchAngleEntity")
-    public String searchAngleEntitiesFromNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
-
-        pageName = "Entities Page";
-        model.addAttribute("appName", appName);
-        model.addAttribute("pageName", pageName);
-        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
-        angleEntityControllerLogger.info("Function searchAngleEntitiesFromNavbar just before return");
-        return "viewAngleEntities";
+        model.addAttribute("pageName", showAngleEntityPageName);
+        model.addAttribute("angleEntity", new AngleEntity());
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
+        angleEntityControllerLogger.info("Function showAngleEntityPage just before return");
+        return "showAngleEntity";
     }
 
     @GetMapping("/navbar")
@@ -141,5 +130,15 @@ public class AngleEntityController {
         model.addAttribute("angleEntity", angleEntity);
         angleEntityControllerLogger.info("Function passObjectToNavbar just before return");
         return "navbar";
+    }
+
+    @PostMapping("/navbarSearchAngleEntity")
+    public String searchAngleEntitiesFromNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
+
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", entitiesPageName);
+        model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        angleEntityControllerLogger.info("Function searchAngleEntitiesFromNavbar just before return");
+        return "viewAngleEntities";
     }
 }

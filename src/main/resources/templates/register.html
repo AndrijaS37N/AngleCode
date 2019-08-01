@@ -21,43 +21,44 @@
         <br><br><br>
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <form class="form-signup">
+<!--            CONTINUE HERE -->
+            <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
                 <h3 class="form-signup-heading">Please Sign Up</h3>
                 <hr>
                 <p class="" th:text="#{registration.label.user.emailAddress}"></p>
-                <input type="email" id="inputEmail" name="email" class="form-control"
+                <input th:field="*{emailAddress}" type="email" id="inputEmail" name="email" class="form-control"
                        placeholder="example@gmail.com"
                        required autofocus>
                 <br>
                 <p th:text="#{registration.label.user.firstName}"></p>
-                <input type="text" id="firstName" name="firstName" class="form-control"
+                <input th:field="*{userFirstName}" type="text" id="firstName" name="firstName" class="form-control"
                        placeholder="Keyush"
                        required>
                 <br>
                 <p th:text="#{registration.label.user.lastName}"></p>
-                <input type="text" id="lastName" name="lastName" class="form-control"
+                <input th:field="*{userLastName}" type="text" id="lastName" name="lastName" class="form-control"
                        placeholder="The Stunt Dog"
                        required>
                 <br>
                 <p th:text="#{registration.label.user.password}"></p>
-                <input type="password" id="inputPassword" name="password" class="form-control"
+                <input th:field="*{userPassword}" type="password" id="inputPassword" name="password" class="form-control"
                        placeholder="Input a password greater than 8 characters in length."
                        required>
                 <br>
                 <p th:text="#{registration.label.user.confirmPassword}"></p>
-                <input type="password" id="confirmPassword" name="password" class="form-control"
+                <input th:field="*{confirmedPassword}" type="password" id="confirmPassword" name="password" class="form-control"
                        placeholder="The password you entered above."
                        required>
                 <br>
                 <p th:text="#{registration.label.user.angleUsername}"></p>
-                <input type="text" id="username" name="username" class="form-control"
+                <input th:field="*{angleUsername}" type="text" id="username" name="username" class="form-control"
                        placeholder="keyush_123"
                        required>
                 <br>
+<!--                Note: Not required. -->
                 <p th:text="#{registration.label.user.dob}"></p>
-                <input type="date" id="dob" name="dob" class="form-control"
-                       placeholder="01/01/1996"
-                       required>
+                <input th:field="*{userDateOfBirth}" type="date" id="dob" name="dob" class="form-control"
+                       placeholder="01/01/1996">
                 <br>
 <!--                <label for="image" class="sr-only">Your profile picture.</label>-->
 <!--                <input type="" id="image" name="image" class="form-control"-->
