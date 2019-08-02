@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${appName} + ' | ' + ${pageName}"> Page</title>
+    <!--    Note: The UI libs. -->
+    <div th:replace="/fragments/head :: #headLibraries"></div>
+</head>
+<body>
+
+<div th:replace="/fragments/navbar :: nav"></div>
+
+<div class="bg-info">
+    <br><br><br><br><br>
+    <div class="container"><i>Placeholder.</i></div>
+    <br>
+</div>
+<br>
+<div class="container">
+    <h3>Terms And Conditions</h3>
+    <div class="container fa-border">
+        <div class="col-lg-12">
+            <h5>Conditions</h5>
+            <p th:text="#{termsAndConditions.text.conditions}"></p>
+            <p>Disclaimer: <u>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</u></p>
+            <hr>
+        </div>
+        <div class="col-lg-12">
+            <h5>Services</h5>
+            <p th:text="#{termsAndConditions.text.services}"></p>
+            <li>Service #1</li>
+            <li>Service #2</li>
+            <hr>
+        </div>
+        <div class="col-lg-12">
+            <h5>Information Gathering</h5>
+            <p th:text="#{termsAndConditions.text.informationGathering}"></p>
+            <ul>
+                <li>Variable #1</li>
+                <li>Variable #2</li>
+                <li>Variable #3
+                    <ul>
+                        <li>Variable #3.1</li>
+                        <li>Variable #3.2</li>
+                        <li>Variable #3.3</li>
+                    </ul>
+                </li>
+                <li>Variable #4</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="col-lg-12">
+            <h5>Analytics</h5>
+            <p th:text="#{termsAndConditions.text.analytics}"></p>
+            <ul>
+                <li>Aspect #1</li>
+                <p>Description: Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit, <b>quo minus id quod maxime placeat facere possimus</b>.</p>
+                <li>Aspect #2</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="col-lg-12">
+            <h5>Terms</h5>
+            <p th:text="#{termsAndConditions.text.terms}"></p>
+            <p>Additional: Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+        </div>
+        <br>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div><a href="/register">Back To Sign Up</a></div>
+</div>
+<br>
+</body>
+</html>

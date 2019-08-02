@@ -12,7 +12,7 @@
 
 <div class="bg-info">
     <br><br><br><br><br>
-    <div class="container"><i>Placeholder. TODO - Security stuff.</i></div>
+    <div class="container"><i>Placeholder. TODO - Add more security.</i></div>
     <br>
 </div>
 <br>
@@ -40,7 +40,8 @@
         </div>
         <div class="col-lg-4">
             <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
-                <h3 class="form-signup-heading">Please Sign Up</h3>
+                <h3 class="form-signup-heading">Please Sign Up <span th:if="${errorMessages.size() > 0}"><small class="text-danger">&ShortRightArrow; <b>Some inputs are invalid.</b> Read the error list below the form!</small></span>
+                </h3>
                 <hr>
                 <p class="" th:text="#{registration.label.user.emailAddress}"></p>
                 <input th:field="*{emailAddress}" type="email" id="inputEmail" name="email" class="form-control"
@@ -85,7 +86,7 @@
                 <!--                       required>-->
                 <!--                <br>-->
                 <br>
-                <label>Terms and conditions: <a href="" style="text-decoration: underline;">References.</a></label>
+                <label>Terms and conditions: <a href="/termsAndConditions" style="text-decoration: underline;">References.</a></label>
                 <p>Please read all of the terms and conditions and check the box below if you agree.</p>
                 <div class="checkbox">
                     <label>

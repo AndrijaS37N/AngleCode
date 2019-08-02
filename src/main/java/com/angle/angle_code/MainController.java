@@ -1,19 +1,12 @@
 package com.angle.angle_code;
 
 import com.angle.angle_code.entities.AngleEntity;
-import com.angle.angle_code.entities.User;
-import com.angle.angle_code.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -33,5 +26,15 @@ public class MainController {
         model.addAttribute("angleEntity", new AngleEntity());
         mainControllerLogger.info("Function homePage just before return");
         return "home";
+    }
+
+    @GetMapping("/termsAndConditions")
+    public String termsAndConditionsPage(Model model) {
+
+        model.addAttribute("appName", appName);
+        model.addAttribute("pageName", homePageName);
+        model.addAttribute("angleEntity", new AngleEntity());
+        mainControllerLogger.info("Function termsAndConditionsPage just before return");
+        return "termsAndConditions";
     }
 }

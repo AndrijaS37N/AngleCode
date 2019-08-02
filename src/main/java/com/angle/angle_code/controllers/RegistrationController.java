@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,13 +84,6 @@ public class RegistrationController {
 
             userService.addUser(user);
             model.addAttribute("successMessage", successfulRegistrationMessage);
-
-//            try {
-//                TimeUnit.SECONDS.sleep(3);
-//            } catch (InterruptedException error) {
-//                registrationControllerLogger.error(error.toString());
-//            }
-
             model.addAttribute("user", new User());
         }
 
