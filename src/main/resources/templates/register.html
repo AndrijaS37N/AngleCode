@@ -5,6 +5,7 @@
     <title th:text="${appName} + ' | ' + ${pageName}"> Page</title>
     <!--    Note: The UI libs. -->
     <div th:replace="/fragments/head :: #headLibraries"></div>
+    <script type="text/javascript" src="/scripts/scrollToErrorList.js"></script>
 </head>
 <body>
 
@@ -40,7 +41,7 @@
         </div>
         <div class="col-lg-4">
             <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
-                <h3 class="form-signup-heading">Please Sign Up <span th:if="${errorMessages.size() > 0}"><small class="text-danger">&ShortRightArrow; <b>Some inputs are invalid.</b> Read the error list below the form!</small></span>
+                <h3 class="form-signup-heading">Please Sign Up <span th:if="${errorMessages.size() > 0}"><small class="text-danger">&ShortRightArrow; <b>Some inputs are invalid.</b> Read the <a href="#error_list" id="scroll_to_error_list">error list</a> below or next to the form!</small></span>
                 </h3>
                 <hr>
                 <p class="" th:text="#{registration.label.user.emailAddress}"></p>
@@ -102,6 +103,7 @@
                     class="glyphicon glyphicon-user"></span> <a href="/logIn">here</a>.</p>
             <br>
         </div>
+        <span id="error_list"></span>
         <div class="col-lg-4">
             <div th:if="${errorMessages.size() > 0}" class="alert alert-warning"
                  role="alert">

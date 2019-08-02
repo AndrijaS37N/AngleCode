@@ -42,10 +42,12 @@ public class User {
     private int age;
     @Column(name = "token")
     private String token;
+    @Column(name="enabled")
+    private boolean enabled;
 
     // TODO -> Note: Add role connection.
 
-    public User(long userId, String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, int age, String token) {
+    public User(long userId, String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, int age, String token, boolean enabled) {
         this.userId = userId;
         this.emailAddress = emailAddress;
         this.userFirstName = userFirstName;
@@ -54,10 +56,10 @@ public class User {
         this.angleUsername = angleUsername;
         this.age = age;
         this.token = token;
+        this.enabled = enabled;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public String getEmailAddress() {
         return emailAddress;
@@ -129,5 +131,13 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

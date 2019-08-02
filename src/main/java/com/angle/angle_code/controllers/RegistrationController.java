@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -41,8 +43,8 @@ public class RegistrationController {
     private String basicRegistrationError;
     @Value("${registration.error.checkIfUserExists}")
     private String checkIfUserExistsMessage;
-    @Value("${registration.error.checkIfPasswordsMatch}")
-    private String checkIfPasswordsMatchMessage;
+    @Value("${registration.error.checkIfEnteredPasswordsMatch}")
+    private String checkIfEnteredPasswordsMatchMessage;
 
     @GetMapping("/register")
     public String registerPage(Model model) {
@@ -60,8 +62,9 @@ public class RegistrationController {
         return "register";
     }
 
+    // Note: Try with - result, request and errors.
     @PostMapping("/register")
-    public String registerPagePost(@Valid @ModelAttribute("user") User user, Model model) {
+    public String registerPagePost(@Valid @ModelAttribute("user") User user, Model model, BindingResult result, WebRequest request, Error errors) {
 
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", registerPageName);
@@ -76,12 +79,11 @@ public class RegistrationController {
             errorList.add(basicRegistrationError);
             errorList.add(checkIfUserExistsMessage);
         } else if (!userService.checkIfPasswordsMatch(user.getUserPassword(), user.getConfirmedPassword())) {
-            errorList.add(checkIfPasswordsMatchMessage);
+            errorList.add(checkIfEnteredPasswordsMatchMessage);
+        } else if (result.hasErrors()) {
+            result.reject("user");
         } else {
-
-            registrationControllerLogger.warn("Password: " + user.getUserPassword());
-            registrationControllerLogger.warn("Confirmed password: " + user.getConfirmedPassword());
-
+            user.setEnabled(true);
             userService.addUser(user);
             model.addAttribute("successMessage", successfulRegistrationMessage);
             model.addAttribute("user", new User());
