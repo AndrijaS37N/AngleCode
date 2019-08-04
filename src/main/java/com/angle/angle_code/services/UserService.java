@@ -31,9 +31,6 @@ public class UserService {
     }
 
     public boolean authenticate(User user) {
-
-        // TODO -> For logging in.
-
-        return false;
+        return userRepository.existsByEmailAddressAndUserPassword(user.getEmailAddress(), user.getUserPassword());
     }
 }

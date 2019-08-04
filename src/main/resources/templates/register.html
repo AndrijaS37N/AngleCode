@@ -21,17 +21,17 @@
     <div class="row">
         <br>
         <div class="col-lg-4">
-            <div class="alert alert-success" th:if="${successMessage != null}">
+            <div class="alert alert-success" th:if="${registrationSuccessfulMessage != null}">
                 <b>Yay!</b>
-                <p th:text="${successMessage}"></p>
+                <p th:text="${registrationSuccessfulMessage}"></p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <br>
             </div>
-            <div class="alert alert-info" th:if="${successMessage != null}">
+            <div class="alert alert-info" th:if="${registrationSuccessfulMessage != null}">
                 <strong>Enter your new account!</strong>
-                <p>You can access you account by <a href="/logIn">logging in</a>.</p>
+                <p>You can access your account by <a href="/logIn">logging in</a>.</p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

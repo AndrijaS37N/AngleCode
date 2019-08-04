@@ -21,15 +21,15 @@
         <br>
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form class="form-signin">
+            <form class="form-signin" method="post" th:action="@{/logIn}" th:object="${user}">
                 <h3 class="form-signin-heading">Please Sign In</h3>
                 <hr>
                 <label for="inputEmail" class="sr-only">Your email address.</label>
-                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Your email address."
+                <input th:field="*{emailAddress}" type="email" id="inputEmail" name="email" class="form-control" placeholder="Your email address."
                        required autofocus>
                 <br>
                 <label for="inputPassword" class="sr-only">Your password.</label>
-                <input type="password" id="inputPassword" name="password" class="form-control"
+                <input th:field="*{userPassword}" type="password" id="inputPassword" name="password" class="form-control"
                        placeholder="Your password."
                        required>
                 <br>
@@ -46,7 +46,20 @@
             <p> Don't have an account? Make one <span
                     class="glyphicon glyphicon-user"></span>  <a href="/register">here</a>.</p>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div th:if="${errorMessages.size() > 0}" class="alert alert-warning"
+                 role="alert">
+                <strong>Holy guacamole!</strong>
+                <p>This is the error list:</p>
+                <ul th:each="errorMessage : ${errorMessages}">
+                    <li th:text="${errorMessage}"></li>
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+            </div>
+        </div>
     </div>
 </div>
 </body>

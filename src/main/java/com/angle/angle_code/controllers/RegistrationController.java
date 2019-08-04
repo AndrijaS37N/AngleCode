@@ -39,6 +39,7 @@ public class RegistrationController {
     private String successfulRegistrationMessage;
 
     private List<String> errorList = new ArrayList<>();
+
     @Value("${registration.message.error}")
     private String basicRegistrationError;
     @Value("${registration.error.checkIfUserExists}")
@@ -85,7 +86,7 @@ public class RegistrationController {
         } else {
             user.setEnabled(true);
             userService.addUser(user);
-            model.addAttribute("successMessage", successfulRegistrationMessage);
+            model.addAttribute("registrationSuccessfulMessage", successfulRegistrationMessage);
             model.addAttribute("user", new User());
         }
 
