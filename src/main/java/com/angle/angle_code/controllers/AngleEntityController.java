@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @SuppressWarnings("SpellCheckingInspection")
 @Controller
+@RequestMapping("/angleEntity")
+@CrossOrigin
 public class AngleEntityController {
 
     private final static Logger angleEntityControllerLogger = LoggerFactory.getLogger(AngleEntityController.class);
@@ -63,7 +63,7 @@ public class AngleEntityController {
     public String deleteAngleEntity(@PathVariable("id") long id) {
         angleEntityService.deleteAngleEntity(id);
         angleEntityControllerLogger.info("Function deleteAngleEntity just before return");
-        return "redirect:/viewAngleEntities";
+        return "redirect:/angleEntity/viewAngleEntities";
     }
 
     @GetMapping("/edit/{id}")
@@ -88,7 +88,7 @@ public class AngleEntityController {
 
         angleEntityService.updateAngleEntity(angleEntity, id);
         angleEntityControllerLogger.info("Function updateAngleEntity just before return");
-        return "redirect:/viewAngleEntities";
+        return "redirect:/angleEntity/viewAngleEntities";
     }
 
     @GetMapping("/addAngleEntity")

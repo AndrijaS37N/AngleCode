@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
@@ -21,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/access")
+@CrossOrigin
 public class RegistrationController {
 
     private final static Logger registrationControllerLogger = LoggerFactory.getLogger(MainController.class);
@@ -52,7 +52,6 @@ public class RegistrationController {
 
         errorList.clear();
         model.addAttribute("errorMessages", errorList);
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", registerPageName);
         model.addAttribute("user", new User());
@@ -63,7 +62,7 @@ public class RegistrationController {
         return "register";
     }
 
-    // Note: Try with - result, request and errors.
+    // TODO -> Note: Try with - result, request and errors.
     @PostMapping("/register")
     public String registerPagePost(@Valid @ModelAttribute("user") User user, Model model, BindingResult result, WebRequest request, Error errors) {
 

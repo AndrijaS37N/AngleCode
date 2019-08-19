@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/public")
+@CrossOrigin
 public class MainController {
 
     private final static Logger mainControllerLogger = LoggerFactory.getLogger(MainController.class);
@@ -18,7 +20,7 @@ public class MainController {
     @Value("${page.name.homePage}")
     private String homePageName;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String homePage(Model model) {
 
         model.addAttribute("appName", appName);

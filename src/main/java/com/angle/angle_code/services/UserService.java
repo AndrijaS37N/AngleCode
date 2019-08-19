@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class UserService {
 
@@ -20,6 +22,7 @@ public class UserService {
         userRepository.save(user);
         user.setConfirmedPassword(null);
         user.setUserPassword(null);
+        // .....
     }
 
     public boolean checkIfUserExists(User user) {
@@ -31,6 +34,17 @@ public class UserService {
     }
 
     public boolean authenticate(User user) {
-        return userRepository.existsByEmailAddressAndUserPassword(user.getEmailAddress(), user.getUserPassword());
+
+        long randomSeed = System.currentTimeMillis();
+        Random random = new Random();
+        random.setSeed(randomSeed);
+
+        if (userRepository.existsByEmailAddressAndUserPassword(user.getEmailAddress(), user.getUserPassword())) {
+            // Note: Let's make the input params for encoding the token these thingies.
+            user.setToken(bCryptPasswordEncoder.encode(user.getUserPassword() + user.getAngleUsername() + System.currentTimeMillis() + random.nextGaussian() + random.nextLong()));
+            return true;
+        }
+
+        return false;
     }
 }

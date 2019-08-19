@@ -1,5 +1,3 @@
-/* Note: Inline CSS present in the HTML pages. Here is the main style file for this project. */
-
 #wafEmail:hover {
     text-decoration: none;
     color: ghostwhite;
@@ -52,3 +50,5 @@ footer .btn-primary:hover {
 #navbar_right_buttons .btn {
     margin-top: 8px;
 }
+
+/* Note: Inline CSS present in the HTML pages. Here is the main style file for this project. */

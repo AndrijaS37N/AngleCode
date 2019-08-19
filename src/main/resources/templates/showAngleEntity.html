@@ -24,10 +24,10 @@
                     th:text="${angleEntity.angleEntityId}"></span></p></div>
             <div class="well well-sm"><p class="center-block">Name: <span
                     th:text="${angleEntity.angleEntityName}"></span></p></div>
-            <div><a href="/">Back To Home</a> <a style="alignment: right; float: right;" href="/addAngleEntity">Add Another One</a></div>
+            <div><a href="/angleEntity/addAngleEntity">Back To Home</a> <a style="alignment: right; float: right;" href="/angleEntity/addAngleEntity">Add Another One</a></div>
             <hr>
         </div>
-        <form action="#" th:action="@{/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}"
+        <form action="#" th:action="@{/angleEntity/update/{id}(id=${angleEntity.angleEntityId})}" th:object="${angleEntity}"
               method="post">
             <div class="col-md-4">
                 <h3>Edit Angle Entity</h3>
@@ -53,9 +53,9 @@
         <div class="col-md-4">
             <h3>Options</h3>
             <hr>
-            <a href="/viewAngleEntities" class="btn btn-lg btn-block btn-primary" type="button">View All <i
+            <a href="/angleEntity/viewAngleEntities" class="btn btn-lg btn-block btn-primary" type="button">View All <i
                     class="fas fa-list-ol"></i></a>
-            <a th:href="@{/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-lg btn-block btn-danger"
+            <a th:href="@{/angleEntity/delete/{id}(id=${angleEntity.angleEntityId})}" class="btn btn-lg btn-block btn-danger"
                type="button" onclick="return confirm('Are you sure you want to delete this Angle Entity?')">Delete This
                 Entity <i class="fa fa-trash" aria-hidden="true"></i></a>
             <br>
