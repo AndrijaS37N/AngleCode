@@ -33,11 +33,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                // remove csrf and state in session because in jwt we do not need them
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http
+//                // remove csrf and state in session because in jwt we do not need them
+//                .csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                // add jwt filters (1. authentication, 2. authorization)
+//                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+//                .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository))
+//                .authorizeRequests()
+//                // configure access rules
+//
+//                // TODO
+//                .antMatchers(HttpMethod.POST, "/access/logIn").permitAll()
+//                .antMatchers(HttpMethod.POST, "/public/*").permitAll()
+//                .antMatchers("/angleEntity/**").hasRole("ADMIN")
+//                .anyRequest().authenticated();
 
+        http
+                .authorizeRequests()
+                .antMatchers("/public/*").permitAll()
+                .antMatchers("/angleEntity/*").denyAll();
+
+        http
+                .formLogin().loginPage("/access/logIn");
+
+        // TODO
+//        http.cors().and()
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .anyRequest().authenticated()
+//                .and()
+//                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+//                .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepository))
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
 //    @Override

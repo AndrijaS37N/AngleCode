@@ -40,7 +40,7 @@
             <br>
         </div>
         <div class="col-lg-4">
-            <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
+            <form class="form-signup" th:action="@{/access/register}" th:object="${user}" method="post">
                 <h3 class="form-signup-heading">Please Sign Up <span th:if="${errorMessages.size() > 0}"><small class="text-danger">&ShortRightArrow; <b>Some inputs are invalid.</b> Read the <a href="#error_list" id="scroll_to_error_list">error list</a> below or next to the form!</small></span>
                 </h3>
                 <hr>
@@ -87,7 +87,7 @@
                 <!--                       required>-->
                 <!--                <br>-->
                 <br>
-                <label>Terms and conditions: <a href="/termsAndConditions" style="text-decoration: underline;">References.</a></label>
+                <label>Terms and conditions: <a href="/public/termsAndConditions" style="text-decoration: underline;">References.</a></label>
                 <p>Please read all of the terms and conditions and check the box below if you agree.</p>
                 <div class="checkbox">
                     <label>
