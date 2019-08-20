@@ -13,7 +13,9 @@ public class Authority {
     @Column(name = "authority_name")
     private String authorityName;
 
-    public Authority() {}
+    public Authority(String authorityName) {
+        this.authorityName = authorityName;
+    }
 
     public long getAuthorityId() {
         return authorityId;

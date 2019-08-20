@@ -2,6 +2,8 @@ package com.angle.angle_code.entities;
 
 import javax.persistence.*;
 
+// Note: Not really in use or connected for now.
+
 @Table(name = "role")
 @Entity
 public class Role {
@@ -15,10 +17,7 @@ public class Role {
     @Column(name = "role_description")
     private String roleDescription;
 
-    public Role() {}
-
-    public Role(long roleId, String roleName, String roleDescription) {
-        this.roleId = roleId;
+    public Role(String roleName, String roleDescription) {
         this.roleName = roleName;
         this.roleDescription = roleDescription;
     }

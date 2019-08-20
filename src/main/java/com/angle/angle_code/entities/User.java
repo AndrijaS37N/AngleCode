@@ -3,9 +3,6 @@ package com.angle.angle_code.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Table(name = "user")
 @Entity
@@ -40,20 +37,24 @@ public class User {
     @Column(name = "angle_username")
     private String angleUsername;
 
-    // Note: Not required for registration for now.
     @Column(name = "age")
     private int age;
+
     @Column(name = "token")
     private String token;
     @Column(name="enabled")
     private boolean enabled;
 
-    // .....
-    private String roles = "";
-    private String permissions = "";
+    @NotNull
+    @NotEmpty
+    @Column(name="role")
+    private String userRole;
 
-    public User(long userId, String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, int age, String token, boolean enabled, String roles, String permissions) {
-        this.userId = userId;
+    // Note: Quickly.
+    @Column(name = "role_authorities")
+    private String roleAuthorities;
+
+    public User(String emailAddress, String userFirstName, String userLastName, String userPassword, String angleUsername, int age, String token, boolean enabled, String userRole, String roleAuthorities) {
         this.emailAddress = emailAddress;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
@@ -62,8 +63,8 @@ public class User {
         this.age = age;
         this.token = token;
         this.enabled = enabled;
-        this.roles = roles;
-        this.permissions = permissions;
+        this.userRole = userRole;
+        this.roleAuthorities = roleAuthorities;
     }
 
     public User() {}
@@ -148,33 +149,19 @@ public class User {
         this.enabled = enabled;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
-    public String getPermissions() {
-        return permissions;
+    public String getRoleAuthorities() {
+        return roleAuthorities;
     }
 
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
-    }
-
-    public List<String> getRoleList(){
-        if(this.roles.length() > 0){
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
-
-    public List<String> getPermissionList(){
-        if(this.permissions.length() > 0){
-            return Arrays.asList(this.permissions.split(","));
-        }
-        return new ArrayList<>();
+    public void setRoleAuthorities(String roleAuthorities) {
+        this.roleAuthorities = roleAuthorities;
     }
 }
