@@ -10,4 +10,5 @@
 * Maven used as a build system.
 
 This is definitely not finished. <b>It's used for practicing web development.</b>
-More documentation will be written in sync with new additions to the project.
+<del>More documentation will be written in sync with new additions to the project.</del>
+<ins>A newer version is being planned.</ins>
