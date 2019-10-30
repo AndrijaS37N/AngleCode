@@ -44,7 +44,6 @@ public class LogInController {
 
     @GetMapping("/logIn")
     public String logInPage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", logInPageName);
         model.addAttribute("angleEntity", new AngleEntity());

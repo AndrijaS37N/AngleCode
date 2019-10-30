@@ -22,7 +22,6 @@ public class MainController {
 
     @GetMapping("/home")
     public String homePage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", homePageName);
         model.addAttribute("angleEntity", new AngleEntity());
@@ -32,7 +31,6 @@ public class MainController {
 
     @GetMapping("/termsAndConditions")
     public String termsAndConditionsPage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", homePageName);
         model.addAttribute("angleEntity", new AngleEntity());

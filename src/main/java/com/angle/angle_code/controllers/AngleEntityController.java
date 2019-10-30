@@ -37,7 +37,6 @@ public class AngleEntityController {
 
     @GetMapping("/viewAngleEntities")
     public String viewAngleEntitiesPage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", entitiesPageName);
         model.addAttribute("angleEntity", new AngleEntity());
@@ -49,10 +48,10 @@ public class AngleEntityController {
 
     @PostMapping("/viewAngleEntities")
     public String searchAngleEntities(@ModelAttribute AngleEntity angleEntity, Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", entitiesPageName);
         model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         angleEntityControllerLogger.info("Function searchAngleEntities angleEntityName = " + angleEntity.getAngleEntityName());
         angleEntityControllerLogger.info("Function searchAngleEntities angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()) = " + angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
         angleEntityControllerLogger.info("Function searchAngleEntities just before return");
@@ -68,7 +67,6 @@ public class AngleEntityController {
 
     @GetMapping("/edit/{id}")
     public String editAngleEntity(@PathVariable("id") long id, Model model) {
-
         AngleEntity foundAngleEntity = angleEntityService.findAngleEntity(id);
         model.addAttribute("angleEntity", foundAngleEntity);
         model.addAttribute("appName", appName);
@@ -80,12 +78,10 @@ public class AngleEntityController {
 
     @PostMapping("/update/{id}")
     public String updateAngleEntity(@PathVariable("id") long id, @Valid AngleEntity angleEntity, BindingResult result) {
-
         if (result.hasErrors()) {
             angleEntity.setAngleEntityId(id);
             return "showAngleEntity";
         }
-
         angleEntityService.updateAngleEntity(angleEntity, id);
         angleEntityControllerLogger.info("Function updateAngleEntity just before return");
         return "redirect:/angleEntity/viewAngleEntities";
@@ -93,7 +89,6 @@ public class AngleEntityController {
 
     @GetMapping("/addAngleEntity")
     public String addAngleEntityPage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", addAngleEntityPageName);
         model.addAttribute("angleEntity", new AngleEntity());
@@ -103,7 +98,6 @@ public class AngleEntityController {
 
     @PostMapping("/addAngleEntity")
     public String addAngleEntityPost(@ModelAttribute AngleEntity angleEntity, Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", showAngleEntityPageName);
         angleEntityService.addAngleEntity(angleEntity);
@@ -115,7 +109,6 @@ public class AngleEntityController {
 
     @GetMapping("/showAngleEntity")
     public String showAngleEntityPage(Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", showAngleEntityPageName);
         model.addAttribute("angleEntity", new AngleEntity());
@@ -126,7 +119,6 @@ public class AngleEntityController {
 
     @GetMapping("/navbar")
     public String passObjectToNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
-
         model.addAttribute("angleEntity", angleEntity);
         angleEntityControllerLogger.info("Function passObjectToNavbar just before return");
         return "navbar";
@@ -134,10 +126,10 @@ public class AngleEntityController {
 
     @PostMapping("/navbarSearchAngleEntity")
     public String searchAngleEntitiesFromNavbar(@ModelAttribute AngleEntity angleEntity, Model model) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", entitiesPageName);
         model.addAttribute("angleEntities", angleEntityService.listAngleEntitiesByName(angleEntity.getAngleEntityName()));
+        model.addAttribute("angleEntitiesCount", angleEntityService.findAngleEntitiesCount());
         angleEntityControllerLogger.info("Function searchAngleEntitiesFromNavbar just before return");
         return "viewAngleEntities";
     }

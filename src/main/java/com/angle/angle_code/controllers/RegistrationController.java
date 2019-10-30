@@ -49,7 +49,6 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String registerPage(Model model) {
-
         errorList.clear();
         model.addAttribute("errorMessages", errorList);
         model.addAttribute("appName", appName);
@@ -65,7 +64,6 @@ public class RegistrationController {
     // TODO -> Note: Try with - result, request and errors.
     @PostMapping("/register")
     public String registerPagePost(@Valid @ModelAttribute("user") User user, Model model, BindingResult result, WebRequest request, Error errors) {
-
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", registerPageName);
         model.addAttribute("angleEntity", new AngleEntity());

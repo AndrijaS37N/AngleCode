@@ -1,4 +1,4 @@
-# Angle Code
+# AngleCode
 
 ### A Spring Boot Java application.
 * Using a MySQL database, with Spring Data JPA and Hibernate.
