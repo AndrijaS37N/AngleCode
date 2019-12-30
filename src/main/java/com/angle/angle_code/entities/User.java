@@ -45,8 +45,8 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     @Column(name="role")
     private String userRole;
 

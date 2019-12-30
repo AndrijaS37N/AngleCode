@@ -107,7 +107,7 @@ public class AngleEntityController {
         return "showAngleEntity";
     }
 
-    @GetMapping("/showAngleEntity")
+    @GetMapping("/ ")
     public String showAngleEntityPage(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("pageName", showAngleEntityPageName);
