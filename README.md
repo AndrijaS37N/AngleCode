@@ -7,4 +7,4 @@
 * Has a simple yet nice UI design, using Thymeleaf, old Bootstrap version 3.*, HTML and CSS, and a bit of JQuery.
 * Maven used as a build system.
 
-<ins>It's used for practicing web development.</ins>
+<ins>This project is used for practicing web development.</ins>
